@@ -1,0 +1,15 @@
+loadComponent("lua","OCL::LuaComponent")
+
+import("rtt_ros")
+ros.import("rtt_rospack")
+
+lua.setPeriod(0.1)
+addPeer("lua","Deployer")
+lua.exec_file("lua_deployement_script.lua")
+
+
+//loadService("lua","marshalling")
+//lua.marshalling.loadProperties("config.cpf")
+
+lua.configure()
+lua.start()
