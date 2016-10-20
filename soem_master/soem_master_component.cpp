@@ -347,7 +347,7 @@ bool  SoemMasterComponent::checkNetworkState(ec_state desired_state, int timeout
 
   if (ec_slave[0].state == desired_state)
   {
-      log(Error) << (ec_state)ec_slave[0].state <<" state reached for all slaves."
+      log(Info) << (ec_state)ec_slave[0].state <<" state reached for all slaves."
               << endlog();
       while (EcatError)
           {
