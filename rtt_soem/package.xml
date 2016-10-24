@@ -9,9 +9,6 @@
   <author>Ruben Smits</author>
   <license>GPL with runtime exception,BSD,LGPL</license>
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>ros</build_depend>
-  <build_depend>orocos_toolchain</build_depend>
-  <build_depend>rtt_ros_integration</build_depend>
   <run_depend>ros</run_depend>
   <run_depend>orocos_toolchain</run_depend>
   <run_depend>rtt_ros_integration</run_depend>

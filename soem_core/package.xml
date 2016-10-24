@@ -1,5 +1,7 @@
-<package>
-  <description brief="soem_core">
+﻿<package>
+  <name>soem_core</name>
+  <version>0.2.0</version>
+    <description>
 
      SOEM is an open source EtherCAT master library written in c. Its
      primary target is Linux but can be adapted to other OS and
@@ -9,13 +11,11 @@
 
   </description>
   <author>Arthur Ketels and M.J.G. van den Molengraft; packaged by Ruben Smits</author>
+  <maintainer email="ruben@intermodalics.eu"> Ruben Smits</maintainer>
   <license>GPL+linking exception</license>
-  <review status="unreviewed" notes=""/>
   <url>http://developer.berlios.de/projects/soem</url>
 
   <export>
     <cpp cflags="-I${prefix}/build/soem_core/src" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lsoem_core"/>
   </export>
 </package>
-
-
