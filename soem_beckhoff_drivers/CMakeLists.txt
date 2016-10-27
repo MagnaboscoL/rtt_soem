@@ -1,32 +1,21 @@
 cmake_minimum_required(VERSION 2.6.3)
 
 project(soem_beckhoff_drivers)
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
-
  
-# Do setup in case of ros package, If ROS_ROOT is set, it is                                                                                                 # recommended to use RTT/OCL through the ros packages.                                                                                                       
-#uncomment if you have defined messages
-if(NOT ORO_USE_ROSBUILD)
-  find_package(catkin REQUIRED message_generation rtt_roscomm)
+find_package(catkin REQUIRED message_generation rtt_roscomm)
   add_message_files( FILES
-    AnalogMsg.msg
-    CommMsgBig.msg
-    CommMsg.msg
-    DigitalMsg.msg
-    EncoderMsg.msg
-    EncoderInMsg.msg
-    EncoderOutMsg.msg
-    PSUMsg.msg
-    )
+  AnalogMsg.msg
+  CommMsgBig.msg
+  CommMsg.msg
+  DigitalMsg.msg
+  EncoderMsg.msg
+  EncoderInMsg.msg
+  EncoderOutMsg.msg
+  PSUMsg.msg
+  )
   
-  generate_messages()
-endif()
+generate_messages()
+
 # Set the CMAKE_PREFIX_PATH in case you're not using Orocos through
 # ROS for helping these find commands find RTT.
 find_package(OROCOS-RTT REQUIRED ${RTT_HINTS} )
@@ -58,14 +47,13 @@ target_link_libraries(soem_el30xx ${soem_LIBRARIES})
 orocos_plugin(soem_el3104 src/soem_beckhoff_drivers.cpp src/soem_el3104.cpp)
 target_link_libraries(soem_el3104 ${soem_LIBRARIES})
 
-if(NOT ORO_USE_ROSBUILD)
-  add_dependencies(soem_el1xxx ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el2xxx ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el4xxx ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el3102 ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el5101 ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el6022 ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el30xx ${PROJECT_NAME}_generate_messages_cpp)
-  add_dependencies(soem_el3104 ${PROJECT_NAME}_generate_messages_cpp)
-endif()
+add_dependencies(soem_el1xxx ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el2xxx ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el4xxx ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el3102 ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el5101 ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el6022 ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el30xx ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(soem_el3104 ${PROJECT_NAME}_generate_messages_cpp)
+
 orocos_generate_package()

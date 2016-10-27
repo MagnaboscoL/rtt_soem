@@ -10,18 +10,15 @@ cmake_minimum_required(VERSION 2.6.3)
 #
 project(soem_ebox)
 
-#uncomment if you have defined messages
-if(NOT ORO_USE_ROSBUILD)
-  find_package(catkin REQUIRED message_generation rtt_roscomm)
-  add_message_files( FILES
-    EBOXAnalog.msg
-    EBOXDigital.msg
-    EBOXOut.msg
-    EBOXPWM.msg
-    )
+find_package(catkin REQUIRED message_generation rtt_roscomm)
+add_message_files( FILES
+  EBOXAnalog.msg
+  EBOXDigital.msg
+  EBOXOut.msg
+  EBOXPWM.msg
+  )
   
-  generate_messages()
-endif()
+generate_messages()
 
 
 # Set the CMAKE_PREFIX_PATH in case you're not using Orocos through ROS
@@ -47,10 +44,8 @@ orocos_plugin(soem_ebox src/soem_ebox.cpp) # ...only one plugin function per lib
 target_link_libraries(soem_ebox ${soem_LIBRARIES})
 #
 
-# Generates and installs our orocos-soem_ebox-<target>.pc and manifest.xml file
+# Generates and installs our orocos-soem_ebox-<target>.pc and package.xml file
 #
-if(NOT ORO_USE_ROSBUILD)
-  add_dependencies(soem_ebox ${PROJECT_NAME}_generate_messages_cpp)
-endif()
+add_dependencies(soem_ebox ${PROJECT_NAME}_generate_messages_cpp)
 
 orocos_generate_package()
